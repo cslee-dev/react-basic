@@ -26,7 +26,6 @@ class App extends Component {
 
   render() {
     const videoSearch = _.debounce((term) => {
-      console.log(term)
       this.videoSearch(term);
     }, 1000);
     return (
@@ -43,7 +42,6 @@ class App extends Component {
   }
 
   videoSearch(term) {
-    console.log(term)
     YTsearch({
       key: API_KEY,
       term: term,
