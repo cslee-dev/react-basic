@@ -20,6 +20,24 @@ class App extends Component {
       selectedVideo: null,
     };
 
+    this.videoSearch('영어');
+  }
+
+  render() {
+    return (
+        <div>
+          <SearchBar handleTermChange={term => this.videoSearch(term)} />
+          <VideoDetail video={this.state.selectedVideo} />
+          <VideoList
+              handleVideoSelect={selectedVideo => this.setState(
+                  {selectedVideo})}
+              videos={this.state.videos}
+          />
+        </div>
+    );
+  }
+
+  videoSearch(term) {
     YTsearch({
       key: API_KEY,
       term: '영어',
@@ -29,20 +47,6 @@ class App extends Component {
         selectedVideo: videos[0],
       });
     });
-  }
-
-  render() {
-    return (
-        <div>
-          <SearchBar />
-          <VideoDetail video={this.state.selectedVideo} />
-          <VideoList
-              handleVideoSelect={selectedVideo => this.setState(
-                  {selectedVideo})}
-              videos={this.state.videos}
-          />
-        </div>
-    );
   }
 }
 
